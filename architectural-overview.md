@@ -244,7 +244,7 @@ graph TD
     A[User Interface] -->|Resides On| B[Vercel PaaS]
     B -->|Connects to| C[Fragile Platform]
     C -->|Deploys On| D[Dockerized Environment]
-    D -->|Interacts With| E[PostgreSQL Database | Dockerized]
+    D -->|Interacts With| E[PostgreSQL database]
     C -->|Utilizes| F[External APIs]
 ```
 
@@ -252,8 +252,8 @@ graph TD
 
 The proposed solution in the Target Architecture serves as the ultimate solution to address most problems and risks. However, it may require substantial development efforts due to the necessary database split. Therefore, the approach is divided into two phases:
 
-    - Address critical issues and continue with a monolithic database until it creates a bottleneck.
-    - Transition further towards the target architecture to resolve remaining risks.
+- Address critical issues and continue with a monolithic database until it creates a bottleneck.
+- Transition further towards the target architecture to resolve remaining risks.
 
 The transitional architecture resolves critical issues but retains some risks. Notably, it utilizes asynchronous messaging for data processing, ensuring independent scalability and availability for different parts of the system. In this context, messages can contain minimal information as the receiver can retrieve details from the database.
 
@@ -282,5 +282,5 @@ A single API Gateway might introduce a single point of failure for the entire sy
 
 Additional concerns regarding the API Gateway:
 
-    - Adds coupling between the gateway and the internal service.
-    - If developed by a single development team, may become a development bottleneck.
+- Adds coupling between the gateway and the internal service.
+- If developed by a single development team, may become a development bottleneck.
