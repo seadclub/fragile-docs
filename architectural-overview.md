@@ -1,6 +1,4 @@
-# Fragile - Aggregator of Friend's Taste Ratings Architectural Kata
-
-*by kenjitheman, October 29, 2023*
+# Fragile - Friend's Ratings Aggregator I Love Endless
 
 This document is a type of architectural documentation or architectural kata. It outlines the high-level system overview, including the business case, system requirements, tech stack, baseline architecture, target architecture, and transition architecture. This type of documentation is crucial in understanding the structure, components, and goals of a software system from an architectural perspective. It helps stakeholders, including developers, project managers, and other relevant parties, grasp the essential aspects of the system's design and functionality.
 
@@ -35,7 +33,6 @@ This document is a type of architectural documentation or architectural kata. It
 - [Transition Architecture](#transition-architecture)
     - [Risk Analysis](#risk-analysis)
         - [Performance](#performance)
-        - [Availability](#availability)
         - [Other](#other)
 
 ## Welcome
@@ -48,7 +45,7 @@ Fragile is not just an app; it's a digital companion that aggregates the tastes 
 
 ## Business Case
 
-In the landscape of content consumption, Fragile seeks to stand out as the go-to platform for tastes aggregator based on the tastes of your friends. The current scenario involves scattered ratings across various platforms, making it challenging to get a comprehensive view of your preferences and those of your friends. Fragile aims to address this by providing a unified space where you can aggregate and explore the collective taste landscape.
+In the landscape of content consumption, Fragile seeks to stand out as the go-to platform for tastes aggregator based on the tastes of your friends. The current scenario involves scattered ratings across various platforms, making it challenging to get a comprehensive view of your preferences and those of your friends. Fragile aims to address this by providing a unified space where you can aggregate and explore the friend's taste landscape.
 
 ### Current Scenario
 
@@ -201,11 +198,11 @@ flowchart TD
     C -->|Utilizes| F[External APIs]
 ```
 
-## Process Views
+### Process Views
 
 This section explains some key use cases to demonstrate how corresponding workflows pass through containers.
 
-### User Registration
+#### User Registration
 
 ```mermaid
 sequenceDiagram
@@ -215,7 +212,7 @@ sequenceDiagram
     Fragile Platform-->>User: Registration Confirmation
 ```
 
-### Taste Rating Submission
+#### Taste Rating Submission
 
 ```mermaid
 sequenceDiagram
@@ -225,7 +222,7 @@ sequenceDiagram
     Fragile Platform-->>User: Rating Confirmation
 ```
 
-### Friend Connection
+#### Friend Connection
 
 ```mermaid
 sequenceDiagram
@@ -235,7 +232,7 @@ sequenceDiagram
     Fragile Platform-->>User: Connection Confirmation
 ```
 
-## Deployment
+### Deployment
 
 The deployment diagram illustrates how the system containers are mapped to the infrastructure.
 
@@ -255,10 +252,6 @@ The proposed solution in the Target Architecture serves as the ultimate solution
 - Address critical issues and continue with a monolithic database until it creates a bottleneck.
 - Transition further towards the target architecture to resolve remaining risks.
 
-The transitional architecture resolves critical issues but retains some risks. Notably, it utilizes asynchronous messaging for data processing, ensuring independent scalability and availability for different parts of the system. In this context, messages can contain minimal information as the receiver can retrieve details from the database.
-
-Since we have a single monolithic database, reduced efforts are required for additional messaging and replication.
-
 ```mermaid
 graph LR
     A[Monolithic Database] -->|Solves Critical Problems| B[Single API Gateway]
@@ -267,7 +260,7 @@ graph LR
 
 Given the single monolithic database, reduced efforts are required for additional messaging and replication.
 
-## Risk Analysis
+### Risk Analysis
 
 The transitional architecture presents several potential high risks.
 
